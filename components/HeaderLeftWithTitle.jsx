@@ -4,8 +4,8 @@ import { Ionicons, MaterialCommunityIcons, FontAwesome  } from '@expo/vector-ico
 
 const HeaderLeftWithTitle = () => (
   <View className="flex flex-row items-center ml-2">
-    <FontAwesome name="hospital-o" size={30} color={'#4A90E2'} className="text-primary mr-2" />
-    <Text className=' font-bold text-lg text-primary'>TakingCare</Text>
+    <FontAwesome name="hospital-o" color={'#D301C5'} size={30} className="text-highlightAccent  mr-2" />
+    <Text className='font-bold text-lg text-highlightAccent'>DoramanaClone</Text>
   </View>
 );
 

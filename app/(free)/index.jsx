@@ -1,10 +1,14 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, SafeAreaView, Image } from 'react-native';
 import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
 
 
 export default function Welcome({ navigation }) {
+
+  const router = useRouter();
+
   return (
     <SafeAreaView className="bg-background flex-1">
       
@@ -89,6 +93,15 @@ export default function Welcome({ navigation }) {
           <MaterialIcons name="videocam" size={48} color="#DBD03B" />
           <Text className="text-textSecondary mt-2">Vídeo</Text>
         </View>
+      </View>
+
+      <View className="flex-1 items-center">
+        <TouchableOpacity 
+          onPress={() => router.push('(authenticated)')} 
+          className="bg-yellow-500 p-4 rounded-lg"
+        >
+          <Text className="text-white font-semibold">Ir para área autenticada</Text>
+        </TouchableOpacity>
       </View>
 
       {/* Rodapé com Links para Redes Sociais */}

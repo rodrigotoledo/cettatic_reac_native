@@ -1,47 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { faker } from '@faker-js/faker';
 import { View, Text, Image, TouchableOpacity, TextInput, FlatList, SafeAreaView  } from 'react-native';
 import { FontAwesome, Ionicons, MaterialIcons } from '@expo/vector-icons';
 const randomLock = Math.floor(Math.random() * 10000)
-const posts = [
-  {
-    id: '1',
-    title: 'Dorama Título 1 conteudo protegido',
-    subtitle: 'Episódio 1 data 01/01/2015',
-    type: 'image',
-    imageUrl: `https://loremflickr.com/640/480?lock=${randomLock}`,
-    likes: 42,
-    reposts: 12,
-    shares: 5,
-    comments: [],
-  },
-  {
-    id: '2',
-    title: 'Dorama Título 2 conteudo protegido',
-    subtitle: 'Curiosidade',
-    type: 'video',
-    imageUrl: `https://loremflickr.com/640/482?lock=${randomLock}`,
-    likes: 56,
-    reposts: 23,
-    shares: 8,
-    comments: [1,2,3,4],
-  },
-  {
-    id: '3',
-    title: 'Dorama Título 3 conteudo protegido',
-    subtitle: 'Atores',
-    type: 'video',
-    imageUrl: `https://loremflickr.com/640/480?lock=${randomLock}`,
-    likes: 56,
-    reposts: 23,
-    shares: 8,
-    comments: [1,3],
-  },
-  // Adicione mais postagens conforme necessário
-];
+function generateRandomPosts(count) {
+  const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+  return Array.from({ length: count }, (_, index) => ({
+    id: `${index + 1}`,
+    title: `Dorama Título ${index + 1} - Algum conteúdo aleatório`,
+    subtitle: `Subtítulo aleatório ${index + 1}`,
+    type: Math.random() > 0.5 ? 'image' : 'video', // Escolhe entre 'image' e 'video'
+    imageUrl: `https://loremflickr.com/640/480?lock=${randomInt(1, 1000)}`, // Gera uma URL aleatória
+    likes: randomInt(10, 100), // Número aleatório entre 10 e 100
+    reposts: randomInt(5, 50), // Número aleatório entre 5 e 50
+    shares: randomInt(1, 20), // Número aleatório entre 1 e 20
+    comments: Array.from({ length: randomInt(0, 5) }, (_, idx) => `Comentário ${idx + 1}`), // Comentários aleatórios
+  }))
+}
 
 export default function DoramasAuth() {
+  const [posts, setPosts] = useState([]);
   const [focusedId, setFocusedId] = useState(null);
   const [commentText, setCommentText] = useState('');
+   useEffect(() => {
+    // Gera 10 posts aleatórios e define no estado
+    const generatedPosts = generateRandomPosts(20);
+    setPosts(generatedPosts);
+  }, []);
 
   const handleFocus = (id) => {
     setFocusedId(id);

@@ -31,7 +31,7 @@ export default function Layout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Taking Care',
+          title: 'Dorama Clone',
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'tv' : 'tv-outline'} color={color} size={24} />
           ),
